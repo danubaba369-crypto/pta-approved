@@ -1,0 +1,111 @@
+.article {
+  padding: 60px 0 100px;
+}
+
+.backLink {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 40px;
+  display: inline-block;
+}
+
+.header {
+  max-width: 800px;
+  margin: 0 auto 50px;
+  text-align: center;
+}
+
+.categoryTag {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.title {
+  font-size: 48px;
+  line-height: 1.1;
+  color: #111;
+  margin-bottom: 25px;
+}
+
+.meta {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.heroImageWrapper {
+  max-width: 1000px;
+  margin: 0 auto 60px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+.heroImage {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.content p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.content h2 {
+  font-size: 28px;
+  margin: 50px 0 20px;
+  color: #111;
+}
+
+.content blockquote {
+  font-size: 22px;
+  font-style: italic;
+  font-family: var(--font-poppins), sans-serif;
+  border-left: 4px solid var(--accent);
+  padding-left: 30px;
+  margin: 40px 0;
+  color: #555;
+  line-height: 1.6;
+}
+
+
+.ctaBox {
+  margin-top: 80px;
+  padding: 60px;
+  background: #fdfdfd;
+  border: 1px dashed var(--accent);
+  border-radius: 20px;
+  text-align: center;
+}
+
+.ctaBox h3 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.ctaBox p {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .title { font-size: 32px; }
+  .heroImage { height: 300px; }
+  .ctaBox { padding: 40px 20px; }
+}

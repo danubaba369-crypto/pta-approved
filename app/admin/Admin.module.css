@@ -1,0 +1,476 @@
+.container {
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.cancelBtn {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cancelBtn:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 40px;
+}
+
+.formSection, .inventorySection {
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  border: 1px solid #f1f5f9;
+}
+
+.formSection h2, .inventorySection h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.easyContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.postCard {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
+.postHeader {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.postMeta h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.postMeta span {
+  font-size: 13px;
+  color: var(--secondary);
+  font-weight: 600;
+}
+
+
+.titleInput {
+  width: 100%;
+  border: none;
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 15px;
+  outline: none;
+  padding: 5px 0;
+}
+
+.descInput {
+  width: 100%;
+  border: none;
+  font-size: 16px;
+  min-height: 100px;
+  outline: none;
+  resize: none;
+  color: #1c1e21;
+}
+
+.metaSelectors {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.metaSelectors select {
+  padding: 8px 15px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  background: #f0f2f5;
+  font-size: 13px;
+  font-weight: 600;
+  outline: none;
+}
+
+.priceRow {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.inputIconGroup {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #f0f2f5;
+  border-radius: 10px;
+  padding: 0 15px;
+  border: 1px solid #ddd;
+}
+
+.inputIconGroup span {
+  font-weight: 800;
+  color: #65676b;
+  margin-right: 10px;
+}
+
+.inputIconGroup input {
+  background: none;
+  border: none;
+  padding: 12px 0;
+  width: 100%;
+  font-weight: 700;
+  outline: none;
+}
+
+.mediaUpload {
+  border: 1px dashed #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  background: #f7f8fa;
+}
+
+.urlInput {
+  width: 100%;
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.previewImage {
+  position: relative;
+  aspect-ratio: 16/9;
+}
+
+.previewImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.previewImage button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.postFooter {
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.postBtn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 12px 40px;
+  border-radius: 8px;
+  font-weight: 800;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.inventoryList {
+  margin-top: 60px;
+}
+
+.feedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.feedItem {
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  overflow: hidden;
+}
+
+.itemImage {
+  aspect-ratio: 1;
+  background: #f9f9f9;
+}
+
+.itemImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.itemContent {
+  padding: 15px;
+}
+
+.itemContent h4 {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.itemPrice {
+  font-weight: 800;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 15px;
+}
+
+.itemActions {
+  display: flex;
+  gap: 10px;
+}
+
+.itemActions button {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.confirmDelete {
+  background: #fee2e2 !important;
+  color: #dc2626 !important;
+  border-color: #fecaca !important;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formGroup label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.formGroup input, .formGroup select, .formGroup textarea {
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.formGroup input:focus, .formGroup select:focus, .formGroup textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.submitBtn {
+  margin-top: 10px;
+  height: 48px;
+  font-weight: 700;
+  border-radius: 10px;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.badge {
+  background: #eff6ff;
+  color: #1e69ff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  padding: 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.table td {
+  padding: 16px;
+  font-size: 14px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.editingRow {
+  background: #f8faff;
+}
+
+.productCell {
+  min-width: 250px;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.productName {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.productBrand {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.conditionTag {
+  background: #f1f5f9;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #475569;
+}
+
+.actions {
+  display: flex;
+  gap: 15px;
+}
+
+.editBtn {
+  color: #1e69ff;
+  font-weight: 700;
+  font-size: 13px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.deleteBtn {
+  color: #ef4444;
+  font-weight: 700;
+  font-size: 13px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.confirmDeleteBtn {
+  color: #fff;
+  background: #ef4444;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.editBtn:hover, .deleteBtn:hover {
+  text-decoration: underline;
+}
+
+.loader {
+  padding: 40px;
+  text-align: center;
+  color: #64748b;
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+}

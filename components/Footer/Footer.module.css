@@ -1,0 +1,162 @@
+.footer {
+  background: #fdfdfd;
+  padding: 80px 0 30px;
+  border-top: 1px solid #f0f0f0;
+  color: #111;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 50px;
+  margin-bottom: 60px;
+}
+
+.logo {
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.logoPrimary { color: var(--primary); }
+.logoSecondary { color: var(--secondary); }
+
+.description {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 300px;
+  margin-bottom: 25px;
+}
+
+.socials {
+  display: flex;
+  gap: 12px;
+}
+
+.socialIcon {
+  width: 36px;
+  height: 36px;
+  background: #f0f0f0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.socialIcon:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.linkCol h4, .contactCol h4 {
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.linkCol ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.linkCol a {
+  font-size: 14px;
+  color: #444;
+  font-weight: 500;
+}
+
+.linkCol a:hover {
+  color: var(--accent);
+  padding-left: 5px;
+}
+
+.contactCol p {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.footerSection h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--secondary);
+  margin-bottom: 25px;
+}
+
+.footerSection ul li a {
+  color: #555;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footerSection ul li a:hover {
+  color: var(--accent);
+}
+
+.pakistanNotice {
+  background: #f8f9fa;
+  padding: 20px 30px;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px dashed var(--accent);
+  margin-bottom: 40px;
+}
+
+.pakistanNotice p {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.bottomBar {
+  border-top: 1px solid #eee;
+  padding-top: 30px;
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  font-weight: 500;
+}
+
+.footerBottom {
+  background: #1B1B1B;
+  color: #ffffff;
+  padding: 20px 0;
+  margin-top: 60px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.bottomBar a {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
