@@ -5,6 +5,8 @@ import ProductGrid from '@/components/ProductGrid/ProductGrid';
 import SidebarFilter from '@/components/SidebarFilter/SidebarFilter';
 import styles from './CategoryPage.module.css';
 
+import { Suspense } from 'react';
+
 export default async function CategoryPage({ params }) {
   const { slug } = await params;
   const title = slug.charAt(0).toUpperCase() + slug.slice(1);
@@ -26,7 +28,9 @@ export default async function CategoryPage({ params }) {
         <div className={styles.layout}>
           <SidebarFilter />
           <div className={styles.mainContent}>
-            <ProductGrid category={slug} />
+            <Suspense fallback={<div>Loading {title}...</div>}>
+              <ProductGrid category={slug} />
+            </Suspense>
           </div>
         </div>
       </div>
