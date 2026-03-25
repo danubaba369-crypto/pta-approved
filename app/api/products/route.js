@@ -4,6 +4,7 @@ export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
     const categoryQuery = searchParams.get('category');
+    const searchQuery = searchParams.get('q');
 
     let query = supabase
       .from('products')
@@ -12,6 +13,10 @@ export async function GET(request) {
 
     if (categoryQuery) {
       query = query.ilike('category', categoryQuery);
+    }
+
+    if (searchQuery) {
+      query = query.or(`name.ilike.%${searchQuery}%,brand.ilike.%${searchQuery}%,description.ilike.%${searchQuery}%`);
     }
 
     const { data, error } = await query;

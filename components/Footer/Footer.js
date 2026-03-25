@@ -11,7 +11,7 @@ export default function Footer() {
               <span className={styles.logoPrimary}>PA</span><span className={styles.logoSecondary}>M</span>
             </Link>
             <p className={styles.description}>
-              Pakistan's #1 marketplace for certified refurbished mobiles. Quality you can trust, prices you'll love.
+              Pakistan's #1 marketplace for certified refurbished mobiles. Quality you can trust, prices you'll love. PTA Approved & Verified.
             </p>
             <div className={styles.socials} id="footer-socials">
               <a href="https://facebook.com/pam.pk" target="_blank" className={styles.socialIcon} aria-label="Facebook" id="footer-social-fb">
@@ -27,28 +27,29 @@ export default function Footer() {
           </div>
           
           <div className={styles.linkCol}>
-            <h4>Shop By Category</h4>
+            <h4>Certified Devices</h4>
             <ul id="footer-categories">
-              <li><Link href="/category/mobiles" id="footer-link-mobiles">Mobiles</Link></li>
-              <li><Link href="/category/laptops" id="footer-link-laptops">Laptops</Link></li>
-              <li><Link href="/category/accessories" id="footer-link-accessories">Accessories</Link></li>
+              <li><Link href="/category/mobiles" id="footer-link-mobiles">PTA Approved Mobiles</Link></li>
+              <li><Link href="/brands" id="footer-link-brands">Top Brands</Link></li>
+              <li><Link href="/deals" id="footer-link-deals">Daily Deals</Link></li>
             </ul>
           </div>
           
           <div className={styles.linkCol}>
-            <h4>Support & Help</h4>
-            <ul>
-              <li><Link href="/privacy">Privacy Policy</Link></li>
-              <li><Link href="/terms">Terms & Conditions</Link></li>
-              <li><Link href="/why-refurbished">Why Refurbished</Link></li>
+            <h4>Policies & FAQ</h4>
+            <ul style={{ fontSize: '0.9rem', color: '#666' }}>
+              <li style={{ marginBottom: '10px' }}>✓ 7 Days Replacement Warranty</li>
+              <li style={{ marginBottom: '10px' }}>✓ Cash on Delivery Available</li>
+              <li style={{ marginBottom: '10px', color: '#d63031' }}>⚠ Burn ya Pani mein gira device change nai ho ga</li>
+              <li style={{ marginBottom: '10px', color: '#d63031' }}>⚠ Device khol liya change nai ho ga</li>
             </ul>
           </div>
           
           <div className={styles.contactCol}>
-            <h4>Contact PAM</h4>
-            <p>Email: support@pam.pk</p>
-            <p>Phone: +92 323 3327011</p>
-            <p>Location: Starcity Sadder Karachi</p>
+            <h4>B2B / Shopkeepers</h4>
+            <p style={{ fontSize: '0.9rem', marginBottom: '10px' }}>Shopkeepers ke liye special rates available hain.</p>
+            <p style={{ fontWeight: '700', color: '#27ae60', marginBottom: '1rem' }}>Quantity zayda lein ghe discount miley ga!</p>
+            <a href="https://wa.me/923233327011" style={{ color: '#0984e3', textDecoration: 'none', fontWeight: '700' }}>Whatsapp karein mazeed details ke liye →</a>
           </div>
         </div>
         

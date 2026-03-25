@@ -23,9 +23,9 @@
 .container {
   display: flex;
   align-items: center;
-  width: 100%;
-  gap: 20px; /* Reduced gap */
+  gap: 20px;
   justify-content: space-between;
+  width: 100%;
 }
 
 .logoWrapper {
@@ -246,11 +246,13 @@
   .bottomRow { display: none; }
   .container { gap: 15px; }
   .searchWrapper { margin: 0 20px; }
+  .menuBtn { display: block; }
+  .mobileOverlay { display: block; }
 }
 
 @media (max-width: 768px) {
   .topRow { height: 70px; }
-  .menuBtn { display: block; order: 1; }
+  .menuBtn { order: 1; }
   
   .logoWrapper { 
     position: absolute;

@@ -2,13 +2,16 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import styles from './Header.module.css';
 
 export default function Header() {
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState('');
   const [placeholder, setPlaceholder] = useState("Search for 'iPhone'...");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const brands = ["iPhone", "Samsung", "Vivo", "Pixel", "MacBook", "OnePlus", "Dell"];
+  const brands = ["iPhone", "Samsung", "Vivo", "Pixel", "OnePlus"];
   
   useEffect(() => {
     let i = 0;
@@ -19,14 +22,20 @@ export default function Header() {
     return () => clearInterval(interval);
   }, []);
 
+  const handleSearch = (e) => {
+    if (e.key === 'Enter' && searchQuery.trim()) {
+      router.push(`/category/mobiles?q=${encodeURIComponent(searchQuery.trim())}`);
+      setIsSearchOpen(false);
+    }
+  };
+
   const navLinks = [
-    { name: "Offers", href: "/offers" },
-    { name: "Deals of the day", href: "/deals" },
-    { name: "Refurbished Mobiles", href: "/category/mobiles" },
-    { name: "Top Brands", href: "/brands" },
-    { name: "Why Refurbished", href: "/why-refurbished" },
+    { name: "Home", href: "/" },
+    { name: "About us", href: "/about" },
+    { name: "Used Mobiles", href: "/category/mobiles" },
+    { name: "Grading", href: "/grading" },
     { name: "B2B", href: "/b2b" },
-    { name: "Insights", href: "/blog" },
+    { name: "Contact us", href: "/contact" },
   ];
 
   return (
@@ -63,7 +72,14 @@ export default function Header() {
 
           <div className={styles.searchWrapper}>
             <div className={styles.search}>
-              <input type="text" placeholder={placeholder} className={styles.searchInput} />
+              <input 
+                type="text" 
+                placeholder={placeholder} 
+                className={styles.searchInput} 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={handleSearch}
+              />
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
               </svg>
@@ -85,9 +101,9 @@ export default function Header() {
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                 <span className={styles.badge}>0</span>
               </button>
-              <button className={styles.actionIcon} title="Account">
+              <Link href="/login" className={styles.actionIcon} title="Account">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              </button>
+              </Link>
               <Link href="/cart" className={styles.cartBtn}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z" />
@@ -104,7 +120,14 @@ export default function Header() {
       <div className={`${styles.mobileSearchRow} ${isSearchOpen ? styles.showSearch : ''}`}>
         <div className="container">
           <div className={styles.search}>
-            <input type="text" placeholder={placeholder} className={styles.searchInput} />
+            <input 
+              type="text" 
+              placeholder={placeholder} 
+              className={styles.searchInput} 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleSearch}
+            />
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>

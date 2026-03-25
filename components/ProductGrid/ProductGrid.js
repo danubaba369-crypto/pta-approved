@@ -1,14 +1,20 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import styles from './ProductGrid.module.css';
 
 export default function ProductGrid({ category }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.get('q') || '';
 
   useEffect(() => {
-    const url = category ? `/api/products?category=${category}` : '/api/products';
+    // Force mobiles category if none provided to keep site mobile-only
+    const activeCategory = category || 'mobiles';
+    const url = `/api/products?category=${activeCategory}${searchQuery ? `&q=${encodeURIComponent(searchQuery)}` : ''}`;
+    
     fetch(url)
       .then(res => res.json())
       .then(data => {
@@ -19,7 +25,7 @@ export default function ProductGrid({ category }) {
         console.error("Failed to fetch products:", err);
         setLoading(false);
       });
-  }, [category]);
+  }, [category, searchQuery]);
 
   if (loading) return <div className="container text-center section">Discovering Premium Inventory...</div>;
 

@@ -19,8 +19,8 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "PAM | PTA Approved Mobiles & Premium Refurbished Marketplace",
-  description: "Buy premium refurbished mobiles, laptops, and accessories in Pakistan. All phones are PTA Approved with 7-day replacement warranty.",
+  title: "PAM | PTA Approved Mobiles & Premium Used Mobiles Marketplace",
+  description: "Buy premium certified used mobiles in Pakistan. All phones are PTA Approved with 7-day replacement warranty.",
   icons: {
     icon: '/favicon.svg',
   },

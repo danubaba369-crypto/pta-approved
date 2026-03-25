@@ -3,47 +3,99 @@
   background: #fff;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  display: flex;
+  justify-content: center;
 }
 
 .container {
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: center;
+  gap: 15px;
   min-width: max-content;
+  padding: 0 4%;
 }
 
 .bubbleWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-.bubble {
-  width: 80px;
-  height: 80px;
+.holographicRing {
+  width: 76px;
+  height: 76px;
+  padding: 3px;
   border-radius: 50%;
-  background: #ffffff;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid #eeeeee;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.bubbleWrapper:hover .bubble {
-  transform: translateY(-8px);
-  border-color: var(--accent);
-  box-shadow: 0 10px 20px rgba(212, 175, 55, 0.15);
+.holographicRing::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff00c1, #00fff0, #7d00ff, #ff00c1);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  filter: blur(8px);
+}
+
+.bubble {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: white;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconContainer {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111;
+  transition: all 0.3s ease;
+}
+
+.iconContainer svg {
+  width: 32px;
+  height: 32px;
+}
+
+.bubbleWrapper:hover .holographicRing {
+  transform: scale(1.1);
+}
+
+.bubbleWrapper:hover .holographicRing::before {
+  opacity: 0.6;
+}
+
+.bubbleWrapper:hover .iconContainer {
+  background: #fff;
+  transform: rotate(5deg);
 }
 
 .bubbleWrapper span {
   font-family: 'Montserrat', sans-serif;
-  font-size: 11px;
-  font-weight: 800;
+  font-size: 10px;
+  font-weight: 700;
   color: #111;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
+  text-align: center;
 }
