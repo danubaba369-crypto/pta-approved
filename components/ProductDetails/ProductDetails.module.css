@@ -1,7 +1,9 @@
 .container {
   display: flex;
   gap: 60px;
-  padding: 40px 0;
+  padding: 40px 20px; /* Added 20px horizontal padding */
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .gallery {
@@ -347,6 +349,16 @@
 }
 
 @media (max-width: 991px) {
-  .container { flex-direction: column; }
+  .container { 
+    flex-direction: column; 
+    padding: 20px 30px; /* Increased to 30px padding for better mobile feel */
+    gap: 20px;
+  }
+  
   .gallery { width: 100%; }
+  
+  .title {
+    font-size: 26px; /* Optimized size */
+    margin-top: 10px;
+  }
 }

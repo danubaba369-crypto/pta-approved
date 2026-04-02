@@ -97,6 +97,7 @@
     flex-direction: column; 
     text-align: center; 
     gap: 40px; 
+    padding: 0 25px; /* Added 25px padding */
   }
   .description { margin: 0 auto 40px; }
   .cta { justify-content: center; }

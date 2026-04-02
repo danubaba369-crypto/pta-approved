@@ -61,7 +61,13 @@ button {
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 4%;
+  padding: 0 5%; /* Increased from 4% */
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 6%; /* Even more padding for mobile */
+  }
 }
 
 @media (min-width: 1400px) {

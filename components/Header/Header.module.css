@@ -201,14 +201,16 @@
   height: calc(100vh - 80px);
   background: rgba(0,0,0,0.5);
   z-index: 999;
-  display: none;
+  display: none; /* Keep hidden by default */
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none; /* Disable interaction when hidden */
 }
 
 .showMenu {
   display: block;
   opacity: 1;
+  pointer-events: auto; /* Enable interaction when open */
 }
 
 .mobileNav {
@@ -247,24 +249,43 @@
   .container { gap: 15px; }
   .searchWrapper { margin: 0 20px; }
   .menuBtn { display: block; }
-  .mobileOverlay { display: block; }
+  /* Remove .mobileOverlay { display: block; } as it was causing blocking issues */
 }
 
 @media (max-width: 768px) {
   .topRow { height: 70px; }
-  .menuBtn { order: 1; }
+  
+  .container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* 3-column grid for perfect centering */
+    align-items: center;
+    gap: 10px;
+    padding: 0 15px;
+  }
+  
+  .menuBtn { 
+    display: block;
+    order: 1;
+    justify-self: start;
+  }
   
   .logoWrapper { 
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    position: static; /* Remove absolute positioning */
+    transform: none;
+    left: auto;
     order: 2;
+    justify-self: center;
+    z-index: 1001;
+  }
+  
+  .actions { 
+    order: 3; 
+    justify-self: end;
   }
   
   .searchWrapper { display: none; }
   .mobileSearchBtn { display: flex; }
   
-  .actions { order: 3; margin-left: auto; }
   .iconGroup { gap: 12px; }
   .actionIcon { display: none; }
   .actionIcon[title="Account"], .cartBtn, .mobileSearchBtn { display: flex; }

@@ -4,15 +4,15 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* Changed from center to prevent clipping */
 }
 
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* Changed from center to prevent clipping */
   gap: 15px;
   min-width: max-content;
-  padding: 0 4%;
+  padding: 0 25px; /* Ensures 25px gutter for the first item */
 }
 
 .bubbleWrapper {
