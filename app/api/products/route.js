@@ -36,10 +36,8 @@ export async function POST(request) {
     const body = await request.json();
     
     const productToInsert = { 
-      ...body,
-      original_price: body.originalPrice 
+      ...body
     };
-    delete productToInsert.originalPrice;
 
     if (!productToInsert.id) {
        productToInsert.id = Date.now().toString();

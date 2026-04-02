@@ -3,15 +3,20 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import styles from './ProductGrid.module.css';
+import ProductPlaceholder from '../ProductPlaceholder/ProductPlaceholder';
 
 export default function ProductGrid({ category }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [imageErrors, setImageErrors] = useState({});
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get('q') || '';
 
+  const handleImageError = (productId) => {
+    setImageErrors(prev => ({ ...prev, [productId]: true }));
+  };
+
   useEffect(() => {
-    // Force mobiles category if none provided to keep site mobile-only
     const activeCategory = category || 'mobiles';
     const url = `/api/products?category=${activeCategory}${searchQuery ? `&q=${encodeURIComponent(searchQuery)}` : ''}`;
     
@@ -44,9 +49,21 @@ export default function ProductGrid({ category }) {
                 </button>
               </div>
               <div className={styles.badge}>{product.condition}</div>
+              {product.variants && product.variants.length > 1 && (
+                <div className={styles.variantBadge}>{product.variants.length} Variants Available</div>
+              )}
               <Link href={`/product/${product.id}`} className={styles.imageLink}>
                 <div className={styles.imageWrapper}>
-                  <img src={product.image || 'https://via.placeholder.com/400'} alt={product.name} className={styles.image} />
+                  {!imageErrors[product.id] ? (
+                    <img 
+                      src={product.image} 
+                      alt={product.name} 
+                      className={styles.image} 
+                      onError={() => handleImageError(product.id)}
+                    />
+                  ) : (
+                    <ProductPlaceholder name={product.name} brand={product.brand} />
+                  )}
                 </div>
               </Link>
               <div className={styles.info}>
@@ -58,7 +75,10 @@ export default function ProductGrid({ category }) {
                   <h3 className={styles.name}>{product.name}</h3>
                 </Link>
                 <div className={styles.pricing}>
-                  <span className={styles.price}>Rs. {product.price}</span>
+                  <span className={styles.price}>
+                    {product.variants && product.variants.length > 1 ? 'From ' : ''}
+                    Rs. {product.price}
+                  </span>
                   {product.originalPrice && Number(product.originalPrice) > Number(product.price) && (
                     <>
                       <span className={styles.oldPrice}>Rs. {product.originalPrice}</span>
@@ -70,7 +90,7 @@ export default function ProductGrid({ category }) {
                 </div>
                 <div className={styles.footer}>
                    <a 
-                     href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '923233327011'}?text=I am interested in ${product.name} priced at Rs. ${product.price}`}
+                     href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '923233327011'}?text=I am interested in ${product.name}. Please show me available variants.`}
                      target="_blank"
                      rel="noopener noreferrer"
                      className={`${styles.buyBtn} holographic`}

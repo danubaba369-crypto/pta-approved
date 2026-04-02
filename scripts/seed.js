@@ -16,11 +16,19 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 async function seedProducts() {
   console.log('Reading products from json...');
   const products = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/products.json'), 'utf8'));
+
+  console.log(`Attempting to reset and seed ${products.length} products...`);
   
-  console.log(`Attempting to seed ${products.length} products...`);
-  
-  // Note: This assumes the table 'products' exists.
-  // If it doesn't, this will fail. Usually you'd create the table in the Supabase Dashboard.
+  // Clear existing products first to ensure only the new list remains
+  const { error: deleteError } = await supabase
+    .from('products')
+    .delete()
+    .neq('id', '0'); // Delete all
+
+  if (deleteError) {
+    console.error('Error clearing products table:', deleteError.message);
+  }
+
   const { data, error } = await supabase
     .from('products')
     .upsert(products, { onConflict: 'id' });
@@ -35,16 +43,18 @@ CREATE TABLE products (
   name TEXT NOT NULL,
   brand TEXT,
   price TEXT NOT NULL,
-  "originalPrice" TEXT,
+  original_price TEXT,
   condition TEXT,
   category TEXT,
   description TEXT,
   image TEXT,
+  variants JSONB DEFAULT '[]'::jsonb,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
       `);
     } else {
       console.error('Error seeding products:', error.message);
+      console.error('Error Details:', error);
     }
   } else {
     console.log('Successfully seeded products!');

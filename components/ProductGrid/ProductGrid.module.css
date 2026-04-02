@@ -92,6 +92,21 @@
   text-transform: uppercase;
 }
 
+.variantBadge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: var(--primary);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 800;
+  z-index: 2;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
 .warrantyPill {
   font-size: 10px;
   font-weight: 800;

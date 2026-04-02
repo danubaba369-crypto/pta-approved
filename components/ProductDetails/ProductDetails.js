@@ -1,24 +1,69 @@
 "use client";
 import { useState } from 'react';
 import styles from './ProductDetails.module.css';
+import ProductPlaceholder from '../ProductPlaceholder/ProductPlaceholder';
 
 export default function ProductDetails({ product }) {
   const [activeTab, setActiveTab] = useState('description');
+  const [hasImageError, setHasImageError] = useState(false);
 
-  const whatsappLink = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '923233327011'}?text=I am interested in ${product.name} priced at Rs. ${product.price}`;
+  // Variant Selection Logic
+  const allVariants = product.variants && product.variants.length > 0 
+    ? product.variants 
+    : [{ color: 'Standard', storage: 'Standard', price: product.price, originalPrice: product.originalPrice, image: product.image }];
+
+  const uniqueStorages = [...new Set(allVariants.map(v => v.storage))];
+  const [selectedStorage, setSelectedStorage] = useState(uniqueStorages[0]);
+  
+  const availableColors = [...new Set(allVariants
+    .filter(v => v.storage === selectedStorage)
+    .map(v => v.color))];
+  
+  const [selectedColor, setSelectedColor] = useState(availableColors[0]);
+
+  // Sync color if storage changes and current color is no longer available
+  if (!availableColors.includes(selectedColor)) {
+    setSelectedColor(availableColors[0]);
+  }
+
+  const currentVariant = allVariants.find(v => v.storage === selectedStorage && v.color === selectedColor) || allVariants[0];
+
+  const displayPrice = currentVariant.price;
+  const displayOriginalPrice = currentVariant.originalPrice;
+  const displayImage = currentVariant.image;
+
+  const whatsappLink = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '923233327011'}?text=I am interested in ${product.name} (${selectedStorage} / ${selectedColor}) priced at Rs. ${displayPrice}`;
 
   return (
     <div className={styles.container}>
       <div className={styles.gallery}>
         <div className={styles.mainImage}>
-          <img src={product.image} alt={product.name} />
+          {!hasImageError ? (
+            <img 
+              src={displayImage} 
+              alt={product.name} 
+              onError={() => setHasImageError(true)}
+            />
+          ) : (
+            <ProductPlaceholder name={product.name} brand={product.brand} />
+          )}
         </div>
-        {/* Placeholder for small thumbnails if they existed in DB */}
         <div className={styles.thumbnails}>
-          <div className={`${styles.thumb} ${styles.active}`}><img src={product.image} /></div>
-          {/* Mock thumbnails to match Refit Global style */}
-          <div className={styles.thumb}><img src={product.image} /></div>
-          <div className={styles.thumb}><img src={product.image} /></div>
+          <div 
+            className={`${styles.thumb} ${styles.active}`}
+            onClick={() => setHasImageError(false)}
+          >
+            <img src={displayImage} onError={(e) => { e.target.style.display = 'none'; }} />
+          </div>
+          {allVariants.slice(1, 3).map((v, i) => (
+             <div key={i} className={styles.thumb} onClick={() => {
+                setSelectedStorage(v.storage);
+                setSelectedColor(v.color);
+                setHasImageError(false);
+             }}>
+                <img src={v.image} onError={(e) => { e.target.style.display = 'none'; }} />
+             </div>
+          ))}
         </div>
       </div>
 
@@ -33,14 +78,51 @@ export default function ProductDetails({ product }) {
         </div>
 
         <div className={styles.pricing}>
-          <span className={styles.price}>Rs. {product.price}</span>
-          {product.originalPrice && Number(product.originalPrice) > Number(product.price) && (
+          <span className={styles.price}>Rs. {displayPrice}</span>
+          {displayOriginalPrice && Number(displayOriginalPrice) > Number(displayPrice) && (
             <>
-              <span className={styles.oldPrice}>Rs. {product.originalPrice}</span>
+              <span className={styles.oldPrice}>Rs. {displayOriginalPrice}</span>
               <span className={styles.discount}>
-                Save {Math.round((1 - Number(product.price) / Number(product.originalPrice)) * 100)}%
+                Save {Math.round((1 - Number(displayPrice) / Number(displayOriginalPrice)) * 100)}%
               </span>
             </>
+          )}
+        </div>
+
+        {/* Variant Selectors */}
+        <div className={styles.variantSelectors}>
+          {uniqueStorages.length > 1 && uniqueStorages[0] !== 'Standard' && (
+            <div className={styles.variantGroup}>
+              <h4>Select Storage</h4>
+              <div className={styles.options}>
+                {uniqueStorages.map(storage => (
+                  <button 
+                    key={storage} 
+                    className={`${styles.selectorBtn} ${selectedStorage === storage ? styles.selectedBtn : ''}`}
+                    onClick={() => setSelectedStorage(storage)}
+                  >
+                    {storage}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {availableColors.length > 1 && availableColors[0] !== 'Standard' && (
+            <div className={styles.variantGroup}>
+              <h4>Select Color</h4>
+              <div className={styles.options}>
+                {availableColors.map(color => (
+                  <button 
+                    key={color} 
+                    className={`${styles.selectorBtn} ${selectedColor === color ? styles.selectedBtn : ''}`}
+                    onClick={() => setSelectedColor(color)}
+                  >
+                    {color}
+                  </button>
+                ))}
+              </div>
+            </div>
           )}
         </div>
 
