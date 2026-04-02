@@ -30,10 +30,13 @@
   position: relative;
 }
 
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-  border-color: var(--accent);
+
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    border-color: var(--accent);
+  }
 }
 
 .topBadges {
@@ -72,9 +75,9 @@
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  pointer-events: auto; /* Re-enable pointer events for the button */
+  pointer-events: auto;
   position: relative;
-  z-index: 11;
+  z-index: 12; /* Above fullCardLink */
 }
 
 .heartBtn:hover {
@@ -128,16 +131,23 @@
   display: block;
   text-decoration: none;
   color: inherit;
+  pointer-events: none; /* Let clicks pass to fullCardLink overlay */
 }
 
-.stretchedLink::after {
-  content: '';
+.fullCardLink {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1;
+  z-index: 10;
+  text-decoration: none;
+  color: transparent;
+  user-select: none;
+}
+
+.stretchedLink::after {
+  display: none; /* Disable previous version */
 }
 
 .imageWrapper {
@@ -158,8 +168,10 @@
   transition: transform 0.5s ease;
 }
 
-.card:hover .image {
-  transform: scale(1.08);
+@media (hover: hover) {
+  .card:hover .image {
+    transform: scale(1.08);
+  }
 }
 
 .info {
@@ -240,7 +252,8 @@
   text-align: center;
   transition: var(--transition);
   position: relative;
-  z-index: 2; /* Ensure it stays above the stretched link */
+  z-index: 12; /* Above fullCardLink */
+  pointer-events: auto;
 }
 
 .buyBtn:hover {

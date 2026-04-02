@@ -52,28 +52,24 @@ export default function ProductGrid({ category }) {
               {product.variants && product.variants.length > 1 && (
                 <div className={styles.variantBadge}>{product.variants.length} Variants Available</div>
               )}
-              <Link href={`/product/${product.id}`} className={`${styles.imageLink} ${styles.stretchedLink}`}>
-                <div className={styles.imageWrapper}>
-                  {!imageErrors[product.id] ? (
-                    <img 
-                      src={product.image} 
-                      alt={product.name} 
-                      className={styles.image} 
-                      onError={() => handleImageError(product.id)}
-                    />
-                  ) : (
-                    <ProductPlaceholder name={product.name} brand={product.brand} />
-                  )}
-                </div>
-              </Link>
+              <div className={styles.imageWrapper}>
+                {!imageErrors[product.id] ? (
+                  <img 
+                    src={product.image} 
+                    alt={product.name} 
+                    className={styles.image} 
+                    onError={() => handleImageError(product.id)}
+                  />
+                ) : (
+                  <ProductPlaceholder name={product.name} brand={product.brand} />
+                )}
+              </div>
               <div className={styles.info}>
                 <div className={styles.meta}>
                   <span className={styles.brand}>{product.brand}</span>
                   <span className={styles.tag}>PTA APPROVED</span>
                 </div>
-                <Link href={`/product/${product.id}`}>
-                  <h3 className={styles.name}>{product.name}</h3>
-                </Link>
+                <h3 className={styles.name}>{product.name}</h3>
                 <div className={styles.pricing}>
                   <span className={styles.price}>
                     {product.variants && product.variants.length > 1 ? 'From ' : ''}
@@ -99,6 +95,7 @@ export default function ProductGrid({ category }) {
                    </a>
                 </div>
               </div>
+              <Link href={`/product/${product.id}`} className={styles.fullCardLink} aria-label={`View details for ${product.name}`}></Link>
             </div>
           ))}
         </div>
