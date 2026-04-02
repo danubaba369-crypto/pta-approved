@@ -52,7 +52,7 @@ export default function ProductGrid({ category }) {
               {product.variants && product.variants.length > 1 && (
                 <div className={styles.variantBadge}>{product.variants.length} Variants Available</div>
               )}
-              <Link href={`/product/${product.id}`} className={styles.imageLink}>
+              <Link href={`/product/${product.id}`} className={`${styles.imageLink} ${styles.stretchedLink}`}>
                 <div className={styles.imageWrapper}>
                   {!imageErrors[product.id] ? (
                     <img 
