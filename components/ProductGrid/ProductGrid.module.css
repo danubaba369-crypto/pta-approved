@@ -1,3 +1,32 @@
+.collectionSection {
+  padding: 60px 0;
+  border-top: 1px solid #f4f4f4;
+}
+
+.collectionHeader {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.collectionTitle {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+}
+
+.collectionDivider {
+  width: 40px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
 .header {
   text-align: center;
   margin-bottom: 60px;
@@ -33,9 +62,9 @@
 
 @media (hover: hover) {
   .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    border-color: var(--accent);
+    transform: scale(1.02);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+    border-color: #eee;
   }
 }
 
@@ -245,18 +274,19 @@
   width: 100%;
   font-size: 11px;
   font-weight: 700;
-  padding: 12px;
-  border-radius: 6px;
+  padding: 14px;
+  border-radius: 8px;
   background: var(--primary);
   color: #fff;
   text-align: center;
-  transition: var(--transition);
+  transition: all 0.3s ease;
   position: relative;
   z-index: 12; /* Above fullCardLink */
   pointer-events: auto;
 }
 
 .buyBtn:hover {
-  background: var(--secondary);
+  background: #000;
+  transform: translateY(-2px);
 }
 

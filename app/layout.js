@@ -1,4 +1,4 @@
-import { Inter, Montserrat, Poppins } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -6,16 +6,10 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
-});
-
-const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata = {
@@ -28,7 +22,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${montserrat.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
       <body style={{ fontFamily: 'var(--font-inter), sans-serif' }}>
         {children}
       </body>

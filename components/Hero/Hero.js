@@ -9,7 +9,7 @@ export default function Hero() {
           <span className={styles.badge}>PTA Approved. Certified. Guaranteed.</span>
           <h1 className={styles.title}>
             The Smart Way to <br />
-            <span>Own Premium <span>Used Mobiles<span>.</span></span></span>
+            <span className={styles.highlight}>Own Premium Used Mobiles.</span>
           </h1>
           <p className={styles.description}>
             Join thousands of satisfied users. Get certified used mobiles with a 7-day replacement warranty and free delivery across Pakistan.

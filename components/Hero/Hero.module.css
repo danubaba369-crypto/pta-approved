@@ -40,8 +40,8 @@
   color: #000;
 }
 
-.title span {
-  color: var(--accent);
+.highlight {
+  color: var(--primary);
 }
 
 .description {

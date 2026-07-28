@@ -39,10 +39,10 @@
 }
 
 .text h3 {
-  font-family: var(--font-poppins), sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 5px;
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
   color: #111;
 }
 

@@ -13,10 +13,10 @@
 }
 
 .logo {
-  font-family: var(--font-poppins), sans-serif;
-  font-size: 28px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
   margin-bottom: 20px;
   display: block;
 }
@@ -57,12 +57,13 @@
 }
 
 .linkCol h4, .contactCol h4 {
-  font-family: var(--font-poppins), sans-serif;
-  font-size: 16px;
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 13px;
   font-weight: 700;
   margin-bottom: 25px;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  color: #111;
 }
 
 .linkCol ul {
@@ -90,11 +91,13 @@
 }
 
 .footerSection h3 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 13px;
   font-weight: 700;
   color: var(--secondary);
   margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .footerSection ul li a {
@@ -134,12 +137,13 @@
 }
 
 .footerBottom {
-  background: #1B1B1B;
-  color: #ffffff;
+  background: var(--primary);
+  color: rgba(255,255,255,0.8);
   padding: 20px 0;
   margin-top: 60px;
   text-align: center;
-  font-size: 13px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
 }
 
 .bottomBar a {

@@ -35,9 +35,11 @@
 .logo {
   display: flex;
   align-items: center;
-  font-family: var(--font-poppins), sans-serif;
-  font-size: 28px;
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 26px;
+  font-weight: 700;
   text-decoration: none;
+  letter-spacing: -0.02em;
 }
 
 .logoPA {

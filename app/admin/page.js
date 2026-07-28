@@ -4,6 +4,12 @@ import AdminLayout from '@/components/AdminLayout/AdminLayout';
 import styles from './Admin.module.css';
 
 export default function AdminPage() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState(null);
@@ -20,6 +26,14 @@ export default function AdminPage() {
     rating: '4.8'
   });
 
+  useEffect(() => {
+    const loggedIn = localStorage.getItem('pam_admin_logged_in') === 'true';
+    if (loggedIn) {
+      setIsLoggedIn(true);
+    }
+    setCheckingAuth(false);
+  }, []);
+
   const [deletingId, setDeletingId] = useState(null);
 
   const fetchProducts = async () => {
@@ -34,8 +48,21 @@ export default function AdminPage() {
   };
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    if (isLoggedIn) {
+      fetchProducts();
+    }
+  }, [isLoggedIn]);
+
+  const handleAdminLogin = (e) => {
+    e.preventDefault();
+    if (email.toLowerCase().trim() === 'pam@gmail.com' && password === 'pam123') {
+      localStorage.setItem('pam_admin_logged_in', 'true');
+      setIsLoggedIn(true);
+      setLoginError('');
+    } else {
+      setLoginError('Invalid email or password. Please try again.');
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -107,6 +134,51 @@ export default function AdminPage() {
       price: '', originalPrice: '', image: '', warranty: '6 Months', rating: '4.8'
     });
   };
+
+  if (checkingAuth) {
+    return (
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-outfit), sans-serif', color: '#888', background: '#f8f9fa' }}>
+        Checking authorization...
+      </div>
+    );
+  }
+
+  if (!isLoggedIn) {
+    return (
+      <div className={styles.loginWrapper}>
+        <div className={styles.loginCard}>
+          <div className={styles.loginHeader}>
+            <h2>PAM Admin</h2>
+            <p>Enter your credentials to manage inventory</p>
+          </div>
+          <form onSubmit={handleAdminLogin} className={styles.loginForm}>
+            <div className={styles.loginInputGroup}>
+              <label>Email Address</label>
+              <input 
+                type="email" 
+                placeholder="pam@gmail.com" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className={styles.loginInputGroup}>
+              <label>Password</label>
+              <input 
+                type="password" 
+                placeholder="••••••••" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            {loginError && <div className={styles.errorBox}>{loginError}</div>}
+            <button type="submit" className={styles.loginBtn}>Sign In</button>
+          </form>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <AdminLayout>

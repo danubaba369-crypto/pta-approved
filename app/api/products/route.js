@@ -5,6 +5,10 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const categoryQuery = searchParams.get('category');
     const searchQuery = searchParams.get('q');
+    const brandQuery = searchParams.get('brand');
+    const minPrice = searchParams.get('minPrice');
+    const maxPrice = searchParams.get('maxPrice');
+    const limitQuery = searchParams.get('limit');
 
     let query = supabase
       .from('products')
@@ -17,6 +21,22 @@ export async function GET(request) {
 
     if (searchQuery) {
       query = query.or(`name.ilike.%${searchQuery}%,brand.ilike.%${searchQuery}%,description.ilike.%${searchQuery}%`);
+    }
+
+    if (brandQuery) {
+      query = query.ilike('brand', brandQuery);
+    }
+
+    if (minPrice) {
+      query = query.gte('price', parseInt(minPrice, 10));
+    }
+
+    if (maxPrice) {
+      query = query.lte('price', parseInt(maxPrice, 10));
+    }
+
+    if (limitQuery) {
+      query = query.limit(parseInt(limitQuery, 10));
     }
 
     const { data, error } = await query;

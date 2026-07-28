@@ -4,49 +4,38 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   display: flex;
-  justify-content: flex-start; /* Changed from center to prevent clipping */
+  justify-content: flex-start;
 }
 
 .container {
   display: flex;
-  justify-content: flex-start; /* Changed from center to prevent clipping */
-  gap: 15px;
+  justify-content: flex-start;
+  gap: 12px;
   min-width: max-content;
-  padding: 0 25px; /* Ensures 25px gutter for the first item */
+  padding: 0 25px;
 }
 
 .bubbleWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
 
 .holographicRing {
-  width: 76px;
-  height: 76px;
-  padding: 3px;
+  width: 72px;
+  height: 72px;
+  padding: 2px;
   border-radius: 50%;
-  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  background: #f0f0f0;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.holographicRing::before {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ff00c1, #00fff0, #7d00ff, #ff00c1);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: -1;
-  filter: blur(8px);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 2px solid #e8e8e8;
 }
 
 .bubble {
@@ -54,7 +43,6 @@
   height: 100%;
   border-radius: 50%;
   background: white;
-  padding: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,34 +56,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #111;
+  color: var(--primary);
   transition: all 0.3s ease;
 }
 
 .iconContainer svg {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
 }
 
 .bubbleWrapper:hover .holographicRing {
-  transform: scale(1.1);
-}
-
-.bubbleWrapper:hover .holographicRing::before {
-  opacity: 0.6;
+  background: var(--primary);
+  border-color: var(--primary);
+  transform: scale(1.08);
 }
 
 .bubbleWrapper:hover .iconContainer {
-  background: #fff;
-  transform: rotate(5deg);
+  background: var(--primary);
+  color: #fff;
 }
 
 .bubbleWrapper span {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   font-size: 10px;
-  font-weight: 700;
-  color: #111;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
+  font-weight: 600;
+  color: #444;
+  letter-spacing: 0.02em;
   text-align: center;
 }
+
+.bubbleWrapper:hover span {
+  color: var(--primary);
+}
+

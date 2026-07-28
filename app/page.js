@@ -17,7 +17,12 @@ export default async function Home() {
       <Hero />
       <TrustSignals />
       <Suspense fallback={<div className="container text-center section">Loading Products...</div>}>
-        <CoreProductGrid />
+        <CoreProductGrid title="Top Deals" limit={4} category="Mobiles" />
+        <CoreProductGrid title="Apple Ecosystem" brand="Apple" limit={8} />
+        <CoreProductGrid title="Google Pixel Lineup" brand="Google" limit={4} />
+        <CoreProductGrid title="Under 50,000 PKR" maxPrice="50000" limit={8} />
+        <CoreProductGrid title="Premium (Under 1 Lac)" minPrice="50000" maxPrice="100000" limit={8} />
+        <CoreProductGrid title="Ultra Premium (Above 1 Lac)" minPrice="100000" limit={8} />
       </Suspense>
       <Footer />
       <WhatsApp />

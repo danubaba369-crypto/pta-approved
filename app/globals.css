@@ -1,8 +1,8 @@
 :root {
-  --primary: #002D3A; /* Refit Dark Blue */
-  --secondary: #2BCED6; /* Refit Cyan */
-  --accent: #2BCED6;
-  --accent-hover: #24b8bf;
+  --primary: #051A22; /* Deeper Dark Blue */
+  --secondary: #169FA6; /* Deeper Cyan for contrast */
+  --accent: #169FA6;
+  --accent-hover: #128288;
   --bg-soft: #F8F9FA;
   --max-width: 1400px;
   --max-width: 1300px;
@@ -34,9 +34,9 @@ body {
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: var(--font-poppins), sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-family: var(--font-outfit), sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.03em;
   line-height: 1.1;
 }
 
@@ -121,45 +121,19 @@ button {
   color: #fff;
 }
 
-/* Holographic Effect */
-@keyframes holographic {
-  0% { background-position: 0% 50%; opacity: 0.9; }
-  50% { background-position: 100% 50%; opacity: 1; }
-  100% { background-position: 0% 50%; opacity: 0.9; }
-}
-
-@keyframes shine {
-  0% { left: -100%; top: -100%; }
-  100% { left: 100%; top: 100%; }
-}
-
+/* Premium Solid Button (Replaces Holographic) */
 .holographic {
-  background: linear-gradient(135deg, #25d366 0%, #34e0a1 25.5%, #2bced6 50%, #34e0a1 74.5%, #25d366 100%) !important;
-  background-size: 400% 400% !important;
-  animation: holographic 6s ease infinite !important;
+  background: var(--primary) !important;
+  color: white !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(43, 206, 214, 0.3);
-  border: none !important;
-  color: white !important;
 }
 
-.holographic::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    45deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0) 45%,
-    rgba(255, 255, 255, 0.4) 50%,
-    rgba(255, 255, 255, 0) 55%,
-    transparent 100%
-  );
-  transform: rotate(45deg);
-  animation: shine 4s infinite;
-  pointer-events: none;
+.holographic:hover {
+  background: #000 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }

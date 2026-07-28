@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import styles from './ProductGrid.module.css';
 import ProductPlaceholder from '../ProductPlaceholder/ProductPlaceholder';
 
-export default function ProductGrid({ category }) {
+export default function ProductGrid({ title, category, brand, minPrice, maxPrice, limit, hideOnEmpty = true }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [imageErrors, setImageErrors] = useState({});
@@ -17,8 +17,16 @@ export default function ProductGrid({ category }) {
   };
 
   useEffect(() => {
-    const activeCategory = category || 'mobiles';
-    const url = `/api/products?category=${activeCategory}${searchQuery ? `&q=${encodeURIComponent(searchQuery)}` : ''}`;
+    const params = new URLSearchParams();
+    if (category) params.append('category', category);
+    else if (!brand && !minPrice && !maxPrice) params.append('category', 'mobiles');
+    if (searchQuery) params.append('q', searchQuery);
+    if (brand) params.append('brand', brand);
+    if (minPrice) params.append('minPrice', minPrice);
+    if (maxPrice) params.append('maxPrice', maxPrice);
+    if (limit) params.append('limit', limit);
+
+    const url = `/api/products?${params.toString()}`;
     
     fetch(url)
       .then(res => res.json())
@@ -32,13 +40,26 @@ export default function ProductGrid({ category }) {
       });
   }, [category, searchQuery]);
 
-  if (loading) return <div className="container text-center section">Discovering Premium Inventory...</div>;
+  if (loading) return (
+    <div className="container section" style={{ textAlign: 'center', padding: '3rem 0', color: '#aaa', fontSize: '13px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+      Loading inventory...
+    </div>
+  );
+
+  const validProducts = Array.isArray(products) ? products : [];
+  if (hideOnEmpty && validProducts.length === 0) return null;
 
   return (
-    <section className="section" id="products">
+    <section className={styles.collectionSection} id={title ? title.toLowerCase().replace(/\s+/g, '-') : 'products'}>
       <div className="container">
+        {title && (
+          <div className={styles.collectionHeader}>
+            <h2 className={styles.collectionTitle}>{title}</h2>
+            <div className={styles.collectionDivider} />
+          </div>
+        )}
         <div className={styles.grid}>
-          {products.map((product) => (
+          {validProducts.map((product) => (
             <div key={product.id} className={styles.card}>
               <div className={styles.topBadges}>
                 <span className={styles.ratingBadge}>★ {product.rating || '4.8'} | 12 reviews</span>
